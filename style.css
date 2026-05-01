@@ -1,20 +1,30 @@
-/* styles.css
-  Focus: variables, spacing scale, responsive patterns, reusable UI pieces.
+/*
+    styles.css
+    This file contains all the styles for the website, including variables, layout, components, and responsive design.
+    Each section and rule is commented to help you understand what it does.
 */
 
 /* ===== Design Tokens / Variables ===== */
+/*
+    The :root selector defines CSS variables (custom properties) for colors, spacing, shapes, and more.
+    These variables make it easy to keep the design consistent and update values in one place.
+*/
 :root {
-    /* Colours */
+    /* Main background color */
     --bg: #0b0d12;
+    /* Card background color */
     --card: #121622;
+    /* Main text color */
     --text: #e9edf7;
+    /* Muted/secondary text color */
     --muted: #9aa4b2;
+    /* Divider/line color (semi-transparent white) */
     --line: rgba(255, 255, 255, 0.08);
 
-    /* Shape */
+    /* Border radius for rounded corners */
     --r: 16px;
 
-    /* Spacing scale */
+    /* Spacing scale for consistent padding/margin */
     --s1: 8px;
     --s2: 12px;
     --s3: 16px;
@@ -22,25 +32,32 @@
     --s5: 32px;
     --s6: 48px;
 
-    /* Layout */
+    /* Maximum width for main content */
     --max: 1100px;
 
-    /* Shadow */
+    /* Box shadow for cards and elements */
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
 /* ===== Reset-ish basics ===== */
+/*
+  Basic reset to ensure consistent box sizing and remove default margin/padding.
+*/
 * {
     box-sizing: border-box;
+    /* Include padding and border in element's total width/height */
 }
 
 html,
 body {
     margin: 0;
+    /* Remove default margin */
     padding: 0;
+    /* Remove default padding */
 }
 
 body {
+    /* Set default font stack for the site */
     font-family:
         system-ui,
         -apple-system,
@@ -49,28 +66,41 @@ body {
         Arial,
         sans-serif;
     background: var(--bg);
+    /* Use background variable */
     color: var(--text);
+    /* Use main text color */
     line-height: 1.5;
+    /* Improve readability */
 }
 
 a {
     color: inherit;
+    /* Links use current text color */
     text-decoration: none;
+    /* Remove underline from links */
 }
 
 h1,
 h2,
 h3 {
     line-height: 1.15;
+    /* Tighter heading spacing */
     margin: 0 0 var(--s3);
+    /* Space below headings */
 }
 
 p {
     margin: 0 0 var(--s3);
+    /* Space below paragraphs */
     color: var(--muted);
+    /* Use muted color for paragraphs */
 }
 
 /* Screen-reader only utility */
+/*
+    .sr-only hides elements visually but keeps them accessible to screen readers.
+    Useful for accessibility (e.g., hidden labels).
+*/
 .sr-only {
     position: absolute;
     width: 1px;
@@ -81,10 +111,15 @@ p {
 }
 
 /* ===== Header ===== */
+/*
+  .SiteHeader styles the main site header, making it sticky at the top with a blurred background.
+*/
 .SiteHeader {
     position: sticky;
+    /* Sticks to top when scrolling */
     top: 0;
     z-index: 10;
+    /* Ensures header stays above other content */
 
     display: flex;
     align-items: center;
@@ -93,25 +128,39 @@ p {
     padding: var(--s3);
 
     background: rgba(11, 13, 18, 0.85);
+    /* Semi-transparent dark background */
     backdrop-filter: blur(10px);
+    /* Adds blur effect behind header */
     border-bottom: 1px solid var(--line);
+    /* Subtle bottom border */
 }
 
+/* Logo text in the header */
 .Logo {
     font-weight: 800;
+    /* Bold logo */
     letter-spacing: 0.5px;
+    /* Slightly spaced letters */
 }
 
 /* Primary nav (desktop) */
+/*
+    .Nav is the main navigation bar, shown as a horizontal flex row on desktop.
+*/
 .Nav {
     display: flex;
     gap: var(--s4);
+    /* Space between nav items */
     align-items: center;
 }
 
 /* Mobile menu button (hidden on desktop) */
+/*
+    .IconButton is the hamburger menu button, hidden on desktop and shown on mobile.
+*/
 .IconButton {
     display: none;
+    /* Hidden by default, shown in mobile breakpoint */
     border: 1px solid var(--line);
     background: transparent;
     color: var(--text);
@@ -121,27 +170,39 @@ p {
 }
 
 /* ===== Page container ===== */
+/*
+    .Page centers the main content and limits its width for better readability.
+*/
 .Page {
     max-width: var(--max);
+    /* Use max width variable */
     margin: 0 auto;
+    /* Center horizontally */
     padding: var(--s6) var(--s3);
+    /* Top/bottom and side padding */
 }
 
 /* ===== Hero ===== */
+/*
+  .Hero is the main hero section, using a grid layout for content and image/card.
+*/
 .Hero {
     display: grid;
     grid-template-columns: 1.4fr 0.6fr;
+    /* Main content and side card */
     gap: var(--s5);
     align-items: stretch;
     margin-bottom: var(--s6);
 }
 
+/* Actions/buttons in the hero section */
 .Hero__actions {
     display: flex;
     gap: var(--s3);
     flex-wrap: wrap;
 }
 
+/* Card in the hero section, usually for stats or images */
 .Hero__card {
     background: linear-gradient(180deg,
             rgba(255, 255, 255, 0.06),
@@ -156,47 +217,61 @@ p {
     justify-content: center;
 }
 
+/* Large stat value in hero card */
 .Stat__value {
     font-size: 40px;
     font-weight: 900;
 }
 
+/* Label for stat value */
 .Stat__label {
     color: var(--muted);
 }
 
 /* ===== Reusable Buttons ===== */
+/*
+  .Btn is a base button style, with variants for primary and ghost buttons.
+*/
 .Btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
 
     border-radius: 14px;
+    /* Rounded corners */
     padding: 12px 16px;
 
     border: 1px solid var(--line);
     gap: 10px;
+    /* Space between icon and text */
 
     transition:
         transform 0.08s ease,
         background 0.12s ease;
 }
 
+/* Button hover effect: slight lift */
 .Btn:hover {
     transform: translateY(-1px);
 }
 
+/* Primary button variant */
 .Btn--primary {
     background: rgba(255, 255, 255, 0.1);
 }
 
+/* Ghost (transparent) button variant */
 .Btn--ghost {
     background: transparent;
 }
 
 /* ===== Section Card Pattern ===== */
+/*
+    section elements are styled as cards with padding, border, and background.
+*/
 section {
     margin: var(--s6) 0;
+    /* Vertical spacing between sections */
     padding: var(--s5);
 
     border: 1px solid var(--line);
@@ -205,6 +280,9 @@ section {
 }
 
 /* ===== Tabs ===== */
+/*
+  Tabs component for switching between views or content.
+*/
 .Tabs__list {
     display: flex;
     gap: var(--s2);
@@ -212,6 +290,7 @@ section {
     flex-wrap: wrap;
 }
 
+/* Individual tab button */
 .Tab {
     border: 1px solid var(--line);
     background: transparent;
@@ -222,11 +301,15 @@ section {
     cursor: pointer;
 }
 
+/* Active tab state */
 .Tab.is-active {
     background: rgba(255, 255, 255, 0.1);
 }
 
 /* ===== Pricing ===== */
+/*
+  Pricing section layout and card styles.
+*/
 .Pricing__top {
     display: flex;
     align-items: center;
@@ -235,7 +318,7 @@ section {
     flex-wrap: wrap;
 }
 
-/* Small “switch” label; input is the actual toggle */
+/* Switch/toggle label and input */
 .Switch {
     display: flex;
     gap: 10px;
@@ -243,13 +326,16 @@ section {
     color: var(--muted);
 }
 
+/* Pricing cards grid */
 .Cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    /* 3 columns */
     gap: var(--s4);
     margin-top: var(--s4);
 }
 
+/* Individual pricing card */
 .Card {
     background: var(--card);
     border: 1px solid var(--line);
@@ -258,6 +344,7 @@ section {
     box-shadow: var(--shadow);
 }
 
+/* Price text in card */
 .Card__price {
     font-size: 28px;
     font-weight: 900;
@@ -265,6 +352,9 @@ section {
 }
 
 /* ===== Form ===== */
+/*
+  Form fields and input styles for consistent, modern forms.
+*/
 .Field {
     display: flex;
     flex-direction: column;
@@ -272,6 +362,7 @@ section {
     margin-bottom: var(--s3);
 }
 
+/* Input and select fields */
 input,
 select {
     background: rgba(255, 255, 255, 0.04);
@@ -282,22 +373,28 @@ select {
     outline: none;
 }
 
+/* Highlight input/select on focus */
 input:focus,
 select:focus {
     border-color: rgba(255, 255, 255, 0.2);
 }
 
+/* Error message for form fields */
 .Field__error {
     min-height: 18px;
     color: #ffb4b4;
 }
 
+/* General form message */
 .Form__msg {
     margin-top: var(--s3);
     color: var(--muted);
 }
 
 /* ===== Footer ===== */
+/*
+    .SiteFooter styles the page footer with a top border and centered, muted text.
+*/
 .SiteFooter {
     border-top: 1px solid var(--line);
     padding: var(--s4);
@@ -306,14 +403,17 @@ select:focus {
 }
 
 /* ===== Responsive breakpoints ===== */
+/*
+  Responsive design: adjust layout for tablets and mobile screens.
+*/
 @media (max-width: 900px) {
 
-    /* Hero becomes a single column */
+    /* Hero becomes a single column on smaller screens */
     .Hero {
         grid-template-columns: 1fr;
     }
 
-    /* Pricing cards stack */
+    /* Pricing cards stack vertically */
     .Cards {
         grid-template-columns: 1fr;
     }
@@ -321,12 +421,12 @@ select:focus {
 
 @media (max-width: 720px) {
 
-    /* Show hamburger button */
+    /* Show hamburger button for mobile nav */
     .IconButton {
         display: inline-flex;
     }
 
-    /* Convert nav into a popover */
+    /* Convert nav into a popover menu on mobile */
     .Nav {
         display: none;
 
